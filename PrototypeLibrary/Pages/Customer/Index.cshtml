@@ -1,0 +1,50 @@
+﻿@page
+@model PrototypeLibrary.Pages.Customer.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Your Books</h1>
+
+<form method="get">
+    <div class="input-group">
+        <input class="form-control" asp-for="SearchTitle" />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+<form method="post">
+
+    <table class="table table-active">
+        <thead>
+            <tr>
+                <th>
+                    <label asp-for="LoanedBook.FirstOrDefault().BookTitle"></label>
+                </th>
+                <th>
+                    <label asp-for="Books.FirstOrDefault().Date"></label>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < Model.Books.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input type="hidden" asp-for=@Model.LoanedBook[i].BookTitle />
+                        @Html.DisplayFor(modelItem => modelItem.LoanedBook[i].BookTitle)
+                    </td>
+                    <td>
+                        <input type="hidden" asp-for=@Model.Books[i].Date />
+                        @Html.DisplayFor(modelItem => modelItem.Books[i].Date)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="input-group-append">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

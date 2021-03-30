@@ -1,0 +1,82 @@
+﻿@page
+@model PrototypeLibrary.Pages.PBooks.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Available Books</h1>
+
+<form method="get">
+    <div class="input-group">
+        <input class="form-control" asp-for="SearchTerm" />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+<form method="post">
+
+
+    <table class="table table-active">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    <label asp-for="PublicBooks.FirstOrDefault().BookTitle"></label>
+                </th>
+                <th>
+                    <label asp-for="PublicBooks.FirstOrDefault().Author"></label>
+                </th>
+                <th>
+                    <label asp-for="PublicBooks.FirstOrDefault().Genre"></label>
+                </th>
+                <th>
+                    <label asp-for="PublicBooks.FirstOrDefault().Price">Late Fee</label>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.PublicBooks.Count; i++)
+            {
+                <tr>
+                    
+                    <td>
+                        <input type="hidden" asp-for=@Model.PublicBooks[i].BookID />
+                    </td>
+                    <td>
+                        <input type="hidden" asp-for=@Model.PublicBooks[i].BookTitle />
+                        @Html.DisplayFor(modelItem => modelItem.PublicBooks[i].BookTitle)
+                    </td>
+                    <td>
+                        <input type="hidden" asp-for=@Model.PublicBooks[i].Author />
+                        @Html.DisplayFor(modelItem => modelItem.PublicBooks[i].Author)
+                    </td>
+                    <td>
+                        <input type="hidden" asp-for=@Model.PublicBooks[i].Genre />
+                        @Html.DisplayFor(modelItem => modelItem.PublicBooks[i].Genre)
+                    </td>
+                    <td>
+                        <input type="hidden" asp-for=@Model.PublicBooks[i].Price />
+                        @Html.DisplayFor(modelItem => modelItem.PublicBooks[i].Price)
+                    </td>
+                    <td>
+                        <div class="form-group">
+
+                            <div>
+                                @Html.CheckBoxFor(model => model.isLoan[i], new { @class = "form-check-inline" })
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <div class="input-group-append">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

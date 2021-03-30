@@ -1,0 +1,61 @@
+﻿@page
+@model PrototypeLibrary.Pages.PersonalBookList.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Your Books</h1>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonalList[0].BookID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonalList[0].BookTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonalList[0].Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonalList[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonalList[0].Price)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.PersonalList) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                
+                
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

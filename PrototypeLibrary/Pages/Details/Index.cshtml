@@ -1,0 +1,53 @@
+﻿@page
+@model PrototypeLibrary.Pages.Balance.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<form method="post">
+
+    <table class="table table-active">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    <label asp-for="Users.FirstOrDefault().Username"></label>
+                </th>
+                <th>
+                    <label asp-for="Users.FirstOrDefault().Email"></label>
+                </th>
+                <th>
+                    <label asp-for="Users.FirstOrDefault().Credit"></label>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Users.Count; i++)
+            {
+            <tr>
+                <td>
+                    <input type="hidden" asp-for=@Model.Users[i].Id />
+                </td>
+                <td>
+                    <input type="hidden" asp-for=@Model.Users[i].Username />
+                    @Html.DisplayFor(modelItem => modelItem.Users[i].Username)
+                </td>
+                <td>
+                    <input type="hidden" asp-for=@Model.Users[i].Email />
+                    @Html.DisplayFor(modelItem => modelItem.Users[i].Email)
+                </td>
+                <td>
+                    <input type="hidden" asp-for=@Model.Users[i].Credit />
+                    £@Html.DisplayFor(modelItem => modelItem.Users[i].Credit)
+                </td>
+                <td>
+                    <a asp-page="./BankCard" asp-route-id="Model.Users[i].Id">Add Credit</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</form>

@@ -1,0 +1,20 @@
+﻿@page
+@model PrototypeLibrary.Pages.Details.MoneyModel
+@{
+    <h1>Increase Account Credit</h1>
+
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div class="form-group">
+                    £<input type="text" asp-for="InputCredit" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Input</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+}
